@@ -25,6 +25,9 @@ class Hello(Resource):
     def get(self, name):
         return "Hello"+name
 
+@app.route('/')
+def helloa():
+    return "HELLO WORLD"
 
 api.add_resource(Hello, '/hello/<name>')
 api.add_resource(ProductController, '/product')
