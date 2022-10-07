@@ -33,4 +33,4 @@ api.add_resource(Hello, '/hello/<name>')
 api.add_resource(ProductController, '/product')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
