@@ -4,6 +4,7 @@ from model import Product
 import json
 from model import db
 
+# Obtiene get_all y post(create)
 class ProductController(Resource):
     def get(self):
         products = Product.query.all()
@@ -26,10 +27,19 @@ class ProductController(Resource):
 
         return {'status': 'Product added'}
 
-    def put(self):
+# Esta clase hace get_by_id, post(edit) y delete
+# Tiene como parametro el id
+class ProductControllerwithArgs(Resource):
+    def get(self, id):
+        product = Product.query.filter_by(id=id).first()
+        #print(product)
+
+        return jsonify(product)
+
+    def put(self, id):
         data = request.get_json()
 
-        product = Product.query.filter_by(id=data['id']).first()
+        product = Product.query.filter_by(id=id).first()
         if not product:
             return {'status': 'Error - Product does not exist'}
         print(product)
@@ -41,9 +51,7 @@ class ProductController(Resource):
 
         return {'status': 'Product modified'}
 
-    def delete(self):
-        id = request.get_json()['id']
-
+    def delete(self, id):
         product = Product.query.filter_by(id=id).delete()
 
         if not product:

@@ -2,7 +2,7 @@ from flask import Flask, jsonify, redirect, request
 from flask_restful import Api, Resource
 from config import config
 from model import db
-from product import ProductController
+from product import ProductController, ProductControllerwithArgs
 
 def createApp(env):
     app = Flask(__name__)
@@ -25,12 +25,16 @@ class Hello(Resource):
     def get(self, name):
         return "Hello"+name
 
+
 @app.route('/')
 def home():
     return "<h1>Hello world</h1>"
 
+
 api.add_resource(Hello, '/hello/<name>')
+
 api.add_resource(ProductController, '/product')
+api.add_resource(ProductControllerwithArgs, '/product/<id>')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
