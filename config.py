@@ -2,7 +2,7 @@ class Config:
     pass
 
 class DevelopmentConfig(Config):
-    DEBUG = True
+    #DEBUG = True
     PROPAGATE_EXCEPTIONS = True
     # Database configuration
     #SQLALCHEMY_DATABASE_URI = 'mysql://root@localhost/flask'
